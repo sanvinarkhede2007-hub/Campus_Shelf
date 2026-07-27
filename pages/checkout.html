@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — CampusShelf</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+
+  <nav class="ck-nav">
+    <div class="ck-nav-inner">
+      <a class="ck-brand" href="campus_shelf.html">CampusShelf</a>
+      <div class="ck-stepper" aria-hidden="true">
+        <span class="ck-step done">Cart</span>
+        <span class="ck-step-line"></span>
+        <span class="ck-step active" id="stepCheckout">Checkout</span>
+        <span class="ck-step-line"></span>
+        <span class="ck-step" id="stepConfirm">Confirmation</span>
+      </div>
+      <div class="ck-nav-right">
+        <span class="ck-secure">&#128274; Secure Checkout</span>
+        <button class="ck-theme-btn" id="themeToggleBtn" aria-label="Toggle dark mode">&#9728;</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="ck-main">
+
+    <!-- No item selected -->
+    <section class="ck-empty" id="stateEmpty" hidden>
+      <div class="ck-empty-card">
+        <h1>No item selected</h1>
+        <p>We couldn't find a book to check out. Head back and tap "Buy Now" on a listing to start again.</p>
+        <a class="ck-btn ck-btn-primary" href="campus_shelf.html">Back to CampusShelf</a>
+      </div>
+    </section>
+
+    <!-- Checkout form -->
+    <section class="ck-checkout" id="stateCheckout" hidden>
+      <div class="ck-wrap ck-grid">
+
+        <div class="ck-left">
+
+          <!-- Book details -->
+          <div class="ck-card">
+            <h2 class="ck-card-title">Book details</h2>
+            <div class="ck-book-row">
+              <div class="ck-book-thumb" id="bookThumb"><span>&#128214;</span></div>
+              <div class="ck-book-info">
+                <div class="ck-book-top">
+                  <h3 id="bookTitle">&nbsp;</h3>
+                  <span class="ck-type-badge" id="bookTypeBadge"></span>
+                </div>
+                <p class="ck-book-author" id="bookAuthor"></p>
+                <p class="ck-book-meta" id="bookMeta"></p>
+                <p class="ck-book-condition" id="bookCondition"></p>
+              </div>
+              <div class="ck-book-price" id="bookPrice"></div>
+            </div>
+          </div>
+
+          <!-- Seller profile -->
+          <div class="ck-card">
+            <h2 class="ck-card-title">Seller</h2>
+            <div class="ck-seller-row">
+              <div class="ck-seller-avatar" id="sellerAvatar">?</div>
+              <div class="ck-seller-info">
+                <div class="ck-seller-name-row">
+                  <span class="ck-seller-name" id="sellerName"></span>
+                  <span class="ck-verified-badge" id="sellerVerifiedBadge">&#10003; Verified</span>
+                </div>
+                <p class="ck-seller-meta" id="sellerMeta"></p>
+                <div class="ck-seller-stats">
+                  <span><span class="ck-star">&#9733;</span><span id="sellerRating"></span></span>
+                  <span id="sellerBooksSold"></span>
+                  <span id="sellerResponseTime"></span>
+                </div>
+              </div>
+              <button class="ck-btn ck-btn-outline ck-btn-small" id="viewAllListingsBtn">View All Listings</button>
+            </div>
+          </div>
+
+          <!-- Pickup details -->
+          <div class="ck-card">
+            <h2 class="ck-card-title">Pickup details</h2>
+            <div class="ck-field">
+              <label for="pickupLocation">Pickup location</label>
+              <select id="pickupLocation">
+                <option value="">Choose a pickup point&hellip;</option>
+                <option>Library Main Entrance</option>
+                <option>Academic Block Lobby</option>
+                <option>Hostel Block A Reception</option>
+                <option>Hostel Block C Reception</option>
+                <option>Cafeteria</option>
+                <option value="__other">Other (specify)</option>
+              </select>
+            </div>
+            <div class="ck-field" id="otherLocationField" hidden>
+              <label for="otherLocation">Specify location</label>
+              <input type="text" id="otherLocation" placeholder="e.g. Near the CS department notice board">
+            </div>
+            <div class="ck-field-row">
+              <div class="ck-field">
+                <label for="pickupDate">Pickup date</label>
+                <input type="date" id="pickupDate">
+              </div>
+              <div class="ck-field">
+                <label for="pickupTime">Pickup time</label>
+                <input type="time" id="pickupTime">
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment method -->
+          <div class="ck-card" id="paymentCard">
+            <h2 class="ck-card-title">Payment method</h2>
+            <div class="ck-pay-options" id="payOptions">
+              <label class="ck-pay-option">
+                <input type="radio" name="payMethod" value="upi">
+                <span class="ck-pay-option-label">&#128241; UPI</span>
+              </label>
+              <label class="ck-pay-option">
+                <input type="radio" name="payMethod" value="card">
+                <span class="ck-pay-option-label">&#128179; Card</span>
+              </label>
+              <label class="ck-pay-option">
+                <input type="radio" name="payMethod" value="cod">
+                <span class="ck-pay-option-label">&#128176; Cash on Pickup</span>
+              </label>
+            </div>
+
+            <div class="ck-pay-details" id="upiFields" hidden>
+              <div class="ck-field">
+                <label for="upiId">UPI ID</label>
+                <input type="text" id="upiId" placeholder="yourname@upi">
+              </div>
+            </div>
+
+            <div class="ck-pay-details" id="cardFields" hidden>
+              <div class="ck-field">
+                <label for="cardNumber">Card number</label>
+                <input type="text" id="cardNumber" inputmode="numeric" placeholder="1234 5678 9012 3456" maxlength="19">
+              </div>
+              <div class="ck-field">
+                <label for="cardName">Name on card</label>
+                <input type="text" id="cardName" placeholder="As printed on card">
+              </div>
+              <div class="ck-field-row">
+                <div class="ck-field">
+                  <label for="cardExpiry">Expiry (MM/YY)</label>
+                  <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5">
+                </div>
+                <div class="ck-field">
+                  <label for="cardCvv">CVV</label>
+                  <input type="password" id="cardCvv" inputmode="numeric" maxlength="4" placeholder="&bull;&bull;&bull;">
+                </div>
+              </div>
+              <p class="ck-field-hint">Demo checkout — card details are never stored; only the last 4 digits are kept on your receipt.</p>
+            </div>
+
+            <div class="ck-pay-details" id="codFields" hidden>
+              <p class="ck-field-hint">Pay the seller directly in cash when you pick up the item.</p>
+            </div>
+          </div>
+
+          <!-- Promo code -->
+          <div class="ck-card">
+            <h2 class="ck-card-title">Promo code</h2>
+            <div class="ck-promo-row">
+              <input type="text" id="promoInput" placeholder="Enter code (try WELCOME10)">
+              <button class="ck-btn ck-btn-outline" id="applyPromoBtn">Apply</button>
+            </div>
+            <p class="ck-field-hint" id="promoMessage"></p>
+          </div>
+
+          <!-- Terms -->
+          <div class="ck-card">
+            <label class="ck-terms-row">
+              <input type="checkbox" id="agreeTerms">
+              <span>I agree to the <button type="button" class="ck-link-btn" id="openTermsBtn">Terms &amp; Conditions</button> and CampusShelf's pickup guidelines.</span>
+            </label>
+          </div>
+
+        </div>
+
+        <!-- Order summary -->
+        <aside class="ck-right">
+          <div class="ck-card ck-summary-card">
+            <h2 class="ck-card-title">Order summary</h2>
+            <div class="ck-summary-line">
+              <span>Item price</span>
+              <span id="summarySubtotal">&#8377;0</span>
+            </div>
+            <div class="ck-summary-line" id="summaryDiscountRow" hidden>
+              <span>Discount<span id="summaryDiscountLabel"></span></span>
+              <span id="summaryDiscount">&#8377;0</span>
+            </div>
+            <div class="ck-summary-line">
+              <span>Pickup fee</span>
+              <span>Free</span>
+            </div>
+            <div class="ck-summary-total">
+              <span>Total</span>
+              <span id="summaryTotal">&#8377;0</span>
+            </div>
+            <button class="ck-btn ck-btn-primary ck-confirm-btn" id="confirmOrderBtn" disabled>Confirm Order</button>
+            <p class="ck-field-hint ck-summary-note" id="summaryNote"></p>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Payment processing overlay -->
+  <div class="ck-overlay" id="processingOverlay" hidden>
+    <div class="ck-overlay-card ck-processing-card">
+      <div class="ck-spinner" aria-hidden="true"></div>
+      <p class="ck-processing-text" id="processingText">Verifying payment details&hellip;</p>
+    </div>
+  </div>
+
+  <!-- Success overlay -->
+  <div class="ck-overlay" id="successOverlay" hidden>
+    <div class="ck-overlay-card ck-success-card">
+      <div class="ck-checkmark" aria-hidden="true">
+        <svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24" fill="none"/><path fill="none" d="M14 27l7 7 17-17"/></svg>
+      </div>
+      <h1>Order Confirmed!</h1>
+      <p class="ck-order-id">Order ID: <strong id="successOrderId"></strong></p>
+
+      <div class="ck-qr-block">
+        <img id="qrImage" alt="Pickup QR code" width="160" height="160">
+        <p class="ck-field-hint">Show this QR code to the seller at pickup.</p>
+      </div>
+
+      <div class="ck-receipt" id="receiptBlock"></div>
+
+      <div class="ck-success-actions">
+        <button class="ck-btn ck-btn-outline" id="viewOrdersBtn">View Orders</button>
+        <button class="ck-btn ck-btn-outline" id="downloadReceiptBtn">Download Receipt</button>
+        <a class="ck-btn ck-btn-primary" href="campus_shelf.html">Continue Shopping</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Orders list overlay -->
+  <div class="ck-overlay" id="ordersOverlay" hidden>
+    <div class="ck-overlay-card ck-orders-card">
+      <button class="ck-overlay-close" id="closeOrdersBtn" aria-label="Close">&times;</button>
+      <h2>Your orders</h2>
+      <div id="ordersList"></div>
+    </div>
+  </div>
+
+  <!-- Terms modal -->
+  <div class="ck-overlay" id="termsOverlay" hidden>
+    <div class="ck-overlay-card ck-terms-card">
+      <button class="ck-overlay-close" id="closeTermsBtn" aria-label="Close">&times;</button>
+      <h2>Terms &amp; Conditions</h2>
+      <div class="ck-terms-text">
+        <p>This is placeholder demo text for CampusShelf's pickup terms:</p>
+        <ul>
+          <li>Items are exchanged in person at the agreed pickup point and time.</li>
+          <li>Inspect the item before completing payment or handing over cash.</li>
+          <li>CampusShelf does not process real payments in this prototype.</li>
+          <li>Report any issue with a listing or seller from the main site.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<script src="checkout.js"></script>
+</body>
+</html>

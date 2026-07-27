@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CampusShelf | Login</title>
+
+<link rel="stylesheet" href="../css/login.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+<div class="logo">
+
+<img src="../assets/logo/logo.png" alt="CampusShelf">
+
+<h2>Campus<span>Shelf</span></h2>
+
+</div>
+
+<nav>
+
+<ul>
+
+<li><a class="active" href="#">Home</a></li>
+
+<li><a href="#">Browse</a></li>
+
+<li><a href="#">Categories</a></li>
+
+<li><a href="#">How It Works</a></li>
+
+<li><a href="#">About Us</a></li>
+
+</ul>
+
+</nav>
+
+<div class="nav-buttons">
+
+<button class="theme-btn">
+
+<i class="fa-regular fa-moon"></i>
+
+</button>
+
+<button class="outline-btn"
+onclick="window.location.href='login.html'">
+    Login
+</button>
+
+<button class="primary-btn"
+onclick="window.location.href='register.html'">
+    Sign Up
+</button>
+
+</div>
+
+</header>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+<div class="left">
+
+<span class="badge">
+
+BUY • SELL • EXCHANGE • RENT
+
+</span>
+
+<h1>
+
+Your Campus.<br>
+
+Your Marketplace.
+
+</h1>
+
+<p>
+
+Buy, sell, exchange or rent books, notes and study materials with students in your campus.
+
+Save money. Save time. Learn better.
+
+</p>
+
+<div class="hero-image">
+
+<img src="../assets/images/hero-login.png" alt="CampusShelf">
+
+</div>
+
+<div class="feature-box">
+
+<div class="feature">
+
+<i class="fa-solid fa-users"></i>
+
+<h4>For Students</h4>
+
+<p>By students, for students</p>
+
+</div>
+
+<div class="feature">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+<h4>Trusted Community</h4>
+
+<p>Verified students</p>
+
+</div>
+
+<div class="feature">
+
+<i class="fa-solid fa-tag"></i>
+
+<h4>Great Deals</h4>
+
+<p>Affordable prices</p>
+
+</div>
+
+<div class="feature">
+
+<i class="fa-solid fa-leaf"></i>
+
+<h4>Sustainable</h4>
+
+<p>Reuse & Reduce</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= LOGIN ================= -->
+
+<div class="right">
+
+<div class="login-card">
+
+<img class="login-logo"
+
+src="../assets/logo/logo.png">
+
+<h2>
+
+Welcome Back 👋
+
+</h2>
+
+<p>
+
+Login to continue to CampusShelf
+
+</p>
+
+<form id="loginForm">
+
+<div class="input-box">
+
+<i class="fa-regular fa-user"></i>
+
+<input
+type="text"
+id="fullname"
+placeholder="Full Name">
+
+</div>
+
+<div class="input-box">
+
+<i class="fa-regular fa-envelope"></i>
+
+<input
+type="email"
+id="email"
+placeholder="College Email">
+
+</div>
+
+<div class="input-box">
+
+<i class="fa-solid fa-lock"></i>
+
+<input
+type="password"
+id="password"
+placeholder="Password">
+
+<i class="fa-regular fa-eye eye"></i>
+
+</div>
+
+<div class="input-box">
+
+<i class="fa-solid fa-building-columns"></i>
+
+<select id="department">
+
+    <option value="">Select Department</option>
+    
+    <option>Computer Engineering</option>
+    
+    <option>IT</option>
+    
+    <option>AIML</option>
+    
+    <option>ENTC</option>
+    
+    </select>
+
+</div>
+
+<div class="input-box">
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+<select id="semester">
+
+    <option value="">Select Semester</option>
+    
+    <option>Semester 1</option>
+    
+    <option>Semester 2</option>
+    
+    <option>Semester 3</option>
+    
+    <option>Semester 4</option>
+    
+    <option>Semester 5</option>
+    
+    <option>Semester 6</option>
+    
+    <option>Semester 7</option>
+    
+    <option>Semester 8</option>
+    
+    </select>
+
+</div>
+
+<div class="remember">
+
+<label>
+
+<input type="checkbox">
+
+Remember me
+
+</label>
+
+<a href="#">
+
+Forgot Password?
+
+</a>
+
+</div>
+
+<button
+    type="submit"
+    class="signin">
+
+<i class="fa-solid fa-lock"></i>
+
+Sign In
+
+</button>
+
+<div class="divider">
+
+OR
+
+</div>
+
+<button
+type="button"
+class="guest"
+onclick="window.location.href='../index.html'">
+
+    <i class="fa-regular fa-user"></i>
+
+    Continue as Guest
+
+</button>
+
+<p class="register">
+
+Don't have an account?
+
+<a href="register.html">Create Account</a>
+
+</p>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+<script src="../js/login.js"></script>
+
+</body>
+
+</html>
